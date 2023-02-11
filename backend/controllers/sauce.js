@@ -30,9 +30,12 @@ exports.modifySauce = (req, res, next) => {
       if (sauceRecord.userId != req.auth.userId) {
         res.status(401).json({ message: 'Not authorized' });
       } else {
-        sauceModel.updateOne({ _id: req.params.id }, { ...SauceObject, _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Sauce modifiée!' }))
-          .catch(error => res.status(401).json({ error }));
+        const filename = sauceRecord.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+          sauceModel.updateOne({ _id: req.params.id }, { ...SauceObject, _id: req.params.id })
+            .then(() => res.status(200).json({ message: 'Sauce modifiée!' }))
+            .catch(error => res.status(401).json({ error }));
+        });
       }
     })
     .catch((error) => {
