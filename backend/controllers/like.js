@@ -1,3 +1,5 @@
-const sauce = require("../models/Sauce");
+const Sauce = require("../models/Sauce");
 
-exports.likeUser = (req, res, next) => {};
+exports.likeUser = (req, res, next) => {
+
+};
