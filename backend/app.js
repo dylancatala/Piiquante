@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const sauceRoutes = require("./routes/sauce");
 const userRoutes = require("./routes/user");
+const helmet = require("helmet");
 const app = express();
 
 
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
 
 
 app.use(express.json());
-
+app.use(helmet());
 
 
 app.use("/api/auth", userRoutes);
