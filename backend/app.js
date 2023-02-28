@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 
 app.use(express.json());
-app.use(helmet());
+//app.use(helmet());
 
 
 app.use("/api/auth", userRoutes);
