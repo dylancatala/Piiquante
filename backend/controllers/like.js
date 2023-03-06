@@ -44,6 +44,7 @@ exports.likeUser = (req, res) => {
       .catch(error => res.status(400).json(error));
 
   }
+  // Ajoute un -1 dislike
   if (likeId === choice.DISLIKE) {
     Sauce.updateOne({ _id: req.params.id },
       {

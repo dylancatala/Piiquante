@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 
 
+// Création d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -22,7 +23,7 @@ exports.signup = (req, res, next) => {
 
 
 
-
+// Vérification des identifiants de l'utilisateur 
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -34,6 +35,7 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ message: 'Identifiant ou mot de passe incorrect' })
           }
+          // Création d'un JWT spécifique à l'utilisateur - décoder plus tard
           res.status(200).json({
             userId: user._id,
             token: jwt.sign(

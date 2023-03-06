@@ -2,6 +2,7 @@ const sauceModel = require('../models/Sauce');
 const fs = require('fs');
 const path = require('path');
 
+
 ///Création d'une sauce
 exports.createSauce = (req, res, next) => {
   const SauceObject = JSON.parse(req.body.sauce);
@@ -16,6 +17,7 @@ exports.createSauce = (req, res, next) => {
     .then(() => { res.status(201).json({ message: 'Sauce enregistrée !' }) })
     .catch(error => { res.status(400).json({ error }) })
 };
+
 
 ///Modification d'une sauce
 exports.modifySauce = (req, res, next) => {
@@ -42,6 +44,7 @@ exports.modifySauce = (req, res, next) => {
     });
 };
 
+
 //Suppression d'une sauce
 exports.deleteSauce = (req, res, next) => {
   sauceModel.findOne({ _id: req.params.id })
@@ -62,12 +65,14 @@ exports.deleteSauce = (req, res, next) => {
     });
 };
 
+
 //Récupérer une sauce
 exports.getOneSauce = (req, res, next) => {
   sauceModel.findOne({ _id: req.params.id })
     .then(sauceRecord => res.status(200).json(sauceRecord))
     .catch(error => res.status(404).json({ error }));
 };
+
 
 //Récupérer toutes les sauces
 exports.getAllSauce = (req, res, next) => {

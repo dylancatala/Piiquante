@@ -8,10 +8,7 @@ const helmet = require("helmet");
 const app = express();
 
 
-
-
-
-// CONNEXION MONGODBD
+// Connexion à MongoDBD
 mongoose
   .connect("mongodb://localhost:27017/sauces", {
     useNewUrlParser: true,
@@ -22,7 +19,7 @@ mongoose
 
 
 
-//CORS PRIVACY
+// Cors Privacy, autorisations
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -37,17 +34,14 @@ app.use((req, res, next) => {
 });
 
 
-
 app.use(express.json());
+
+// Protection de l'entête HTTP pour éviter des intrusions malhônnetes 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 
 app.use("/api/auth", userRoutes);
-
-
 app.use("/api/sauces", sauceRoutes);
-
-
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 
