@@ -5,11 +5,6 @@ exports.likeUser = (req, res) => {
 
   const likeId = parseInt(req.body.like);
 
-  const choice = {
-    LIKE: 1,
-    DISLIKE: -1,
-    RESET: 0,
-  }
 
 
   //Ajoute +1 like
@@ -52,7 +47,7 @@ exports.likeUser = (req, res) => {
         $push: { usersDisliked: req.body.userId }
       }
     )
-      .then(() => res.status(201).json({ message: "J'aime ajouté!" }))
+      .then(() => res.status(201).json({ message: "J'aime pas ajouté!" }))
       .catch(error => res.status(400).json(error))
   }
 }

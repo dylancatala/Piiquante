@@ -10,7 +10,7 @@ const app = express();
 
 // Connexion à MongoDBD
 mongoose
-  .connect("mongodb://localhost:27017/sauces", {
+  .connect("mongodb://localhost/sauces", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

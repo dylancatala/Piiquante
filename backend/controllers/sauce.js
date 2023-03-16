@@ -24,7 +24,7 @@ exports.modifySauce = (req, res, next) => {
   const SauceObject = req.file ? {
     ...JSON.parse(req.body.sauce),
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  } : { ...req.body };
+  } : { ...req.body }; 
 
   delete SauceObject._userId;
   sauceModel.findOne({ _id: req.params.id })
