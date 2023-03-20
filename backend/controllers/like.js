@@ -5,7 +5,11 @@ exports.likeUser = (req, res) => {
 
   const likeId = parseInt(req.body.like);
 
-
+  const choice = {
+    LIKE: 1,
+    DISLIKE: -1,
+    RESET: 0,
+  }
 
   //Ajoute +1 like
   if (likeId === choice.LIKE) {
